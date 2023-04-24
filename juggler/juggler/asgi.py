@@ -1,5 +1,5 @@
 """
-ASGI config for jeggler project.
+ASGI config for juggler project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'jeggler.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'juggler.settings')
 
 application = get_asgi_application()
