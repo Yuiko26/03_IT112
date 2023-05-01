@@ -22,12 +22,12 @@ def book_list(request):
     }
     return render(request, 'reviews/books_list.html', context)
 
-def details(request, book_id):
-    details_book = get_object_or_404(Book, pk=book_id)
+def details(request, pk):
+    details_book = get_object_or_404(Book, pk=pk)
     details_review = details_book.review_set.all() 
     book_rating = average_rating([review.rating for review in details_review])
     context = {
-        'book_id': book_id,
+        'book_id': pk,
         'details_book': details_book,
         'reviews': details_review, 
         'rating': book_rating, 
