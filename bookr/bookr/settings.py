@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from bookr import settings
 from django.conf import settings
+import os 
 
 if settings.DEBUG:  # check if running in DEBUG mode
     do_some_logging()
@@ -61,7 +62,7 @@ ROOT_URLCONF = 'bookr.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
