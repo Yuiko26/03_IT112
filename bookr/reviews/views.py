@@ -1,7 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Book, Review
 from .utils import average_rating
-from .forms import ExampleForm, SearchForm
 
 def book_list(request):
     books = Book.objects.all()
