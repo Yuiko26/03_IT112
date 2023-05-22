@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from .models import Book, Review
 from .utils import average_rating
+from .forms import ExampleForm, SearchForm
 
 def book_list(request):
     books = Book.objects.all()
@@ -34,4 +35,7 @@ def details(request, pk):
     }
 
     return render( request, 'reviews/book_details.html',context)
+
+def index(request):
+    return render(request, "base.html")
 
