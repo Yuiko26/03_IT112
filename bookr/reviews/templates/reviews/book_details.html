@@ -1,37 +1,42 @@
 {% extends 'reviews/base.html' %}
 
+
 {% block content %}
-
-<h2>Book Details</h2>
-<li class="list-group-item">
-    <span class="text-info">Title: </span> <span>{{ details_book.title }}</span>
-    <br>
-    <span class="text-info">Publisher: </span> <span>{{ details_book.publisher }}</span>
-    <br>
-    <span class="text-info">Publication Date: </span> <span>{{ details_book.publication_date }}</span>
-    <br>
-    <span class="text-info">Overall Rating: </span> <span class="badge badge-primary badge-pill">{{ rating }}</span>
-
-</li>
-
-<ul class="list-group">
-<h2>Review Comments</h2>    
-    <ul class="list-group">
-        {% for review in reviews %}
-        <li class="list-group-item">
-            <span class="text-info">Review : </span><span>{{ review.content }}</span>
+      <br>
+      <h3>Book Details</h3>
+      <hr>
+      <span class="text-info">Title: </span> <span>{{ book.title }}</span>
+      <br>
+      <span class="text-info">Publisher: </span><span>{{ book.publisher }}</span>
+      <br>
+      <span class="text-info">Publication Date: </span><span>{{ book.publication_date }}</span>
+      <br>
+      {% if not reviews %}
+            <hr>
+            <h3>Be the first one to write a review.</h3>
+      {% else %}
+            <span class="text-info">Overall Rating: </span><span class="badge badge-primary badge-pill">{{ book_rating }}</span>
             <br>
-            <span class="text-info">Created on: </span> <span>{{ review.date_created }}</span>
-            <br>
-            <span class="text-info">Modified on : </span><span>{{ review.date_edited }}</span>
-            <br>
-            <span class="text-info">Rating: </span> <span class="badge badge-primary badge-pill">{{ review.rating }}</span>
-            <br>
-            <span class="text-info">Creator: </span> <span>{{ review.creator }}</span>
-            <br>
-        </li>
-        {% endfor %}
-     </ul>
-</ul>
+            <hr>
+            <h3>Review Comments</h3>
+            <ul>
+            {% for review in reviews %}
+                  <li class="list-group-item">
+                        <span class="text-info">Review comment: </span> <span>{{ review.content }}</span>
+                        <br>
+                        <span class="text-info">Created on: </span><span>{{ review.date_created }}</span>
+                        <br>
+                        <span class="text-info">Modified on: </span><span>{{ review.date_edited }}</span>
+                        <br>
+                        <span class="text-info">Rating: </span><span class="badge badge-secondary badge-pill">{{ review.rating }}</span>
+                        <br>
+                        <span class="text-info">Creator: </span><span>{{ review.creator.username }}</span>
+                        <br>
+                        <a href="{% url 'review_edit' book.pk review.pk %}">Edit Review</a>
+                  </li>
+            {% endfor %}
+            </ul>
+      {% endif %}
+<a class="btn btn-primary" href="{% url 'review_create' details_book.pk %}">Add Review</a>
 
 {% endblock %}
